@@ -1,7 +1,9 @@
 package com.denniseckerskorn.ejercicios;
 
+import com.denniseckerskorn.ejercicios.interfacecalculator.InterfaceCalculator;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        InterfaceCalculator interfaceCalculator = new InterfaceCalculator();
     }
 }
