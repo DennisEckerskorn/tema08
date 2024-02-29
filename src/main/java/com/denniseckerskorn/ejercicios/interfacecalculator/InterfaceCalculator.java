@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class InterfaceCalculator {
     StringBuilder sb = new StringBuilder();
+    //Calculator calculator;
     public InterfaceCalculator() {
         JFrame calculator = new JFrame("Calculator");
         int width = 500;
@@ -19,16 +20,21 @@ public class InterfaceCalculator {
 
         //Espacio para el display, (no se muestra aun???)
         JPanel displaySpace = new JPanel();
-        displaySpace.setPreferredSize(new Dimension(width, 100));
-        calculator.add(displaySpace, BorderLayout.NORTH);
+        displaySpace.setLayout(new GridLayout(width, 100));
+        calculator.add(displaySpace);
 
         //Panel principal:
-        JPanel mainPanel = new JPanel(new BorderLayout(5, 4));
+        JPanel mainPanel = new JPanel(new BoxLayout( 1, BoxLayout.Y_AXIS)); //Ajustar
         //Panel botones:
         JPanel buttonPanel = new JPanel(new GridLayout(4, 4, 5, 5));
 
 
-        String[] buttonNames = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", "=", "%", "+"};
+        String[] buttonNames = { //COnvertir a matriz
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "0", "=", "%", "+"
+        };
         for (String name : buttonNames) {
             JButton button = new JButton(name);
             ActionListener actionListener = new ActionListener() {
@@ -42,11 +48,12 @@ public class InterfaceCalculator {
             buttonPanel.add(button);
         }
 
+        mainPanel.add(displaySpace);
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
         calculator.setContentPane(mainPanel);
         calculator.setBounds(x, y, width, height);
-        calculator.setResizable(false);
+        calculator.setResizable(true);
         calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         calculator.setVisible(true);
     }
