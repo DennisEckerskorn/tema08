@@ -1,6 +1,7 @@
 package com.denniseckerskorn.ejercicios.interfacecalculator;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,89 +9,69 @@ import java.awt.event.ActionListener;
 public class InterfaceCalculator {
     StringBuilder sb = new StringBuilder();
     //Calculator calculator;
-    public InterfaceCalculator() {
-        JFrame calculator = new JFrame("Calculator");
-        int width = 500;
-        int height = 550;
+    public InterfaceCalculator(int width, int height) {
+        Boton[][] textoBotones = {
+                {new Boton("ON", Boton.Accion.ON),  new Boton("OFF", Boton.Accion.OFF), new Boton("%", Boton.Accion.OPERADOR), new Boton("/", Boton.Accion.OPERADOR)},
+                {new Boton("7", Boton.Accion.DIGITO), new Boton("8", Boton.Accion.DIGITO), new Boton("9", Boton.Accion.DIGITO), new Boton("*", Boton.Accion.OPERADOR)},
+                {new Boton("4", Boton.Accion.DIGITO), new Boton("5", Boton.Accion.DIGITO), new Boton("6", Boton.Accion.DIGITO), new Boton("-", Boton.Accion.OPERADOR)},
+                {new Boton("1", Boton.Accion.DIGITO), new Boton("2", Boton.Accion.DIGITO), new Boton("3", Boton.Accion.DIGITO), new Boton("+", Boton.Accion.OPERADOR)},
+                {new Boton("0", Boton.Accion.DIGITO), new Boton(".", Boton.Accion.PUNTO), new Boton("AC", Boton.Accion.AC), new Boton("=", Boton.Accion.IGUAL)},
+        };
+
+        CalculatorController calculatorController = new CalculatorController();
+
+        JButton[] buttons = new JButton[textoBotones.length * textoBotones[0].length];
+        JFrame ventana = new JFrame("Calculator");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
-        calculator.setSize(width, height);
-        int x = (int) (dimension.getWidth() / 2f) - Math.round(width / 2f);
-        int y = (int) (dimension.getHeight() / 2f) - Math.round(height / 2f);
+        long x = Math.round(dimension.getWidth() / 2 - width / 2f);
+        long y = Math.round(dimension.getHeight() / 2 - height / 2f);
 
-        //Espacio para el display, (no se muestra aun???)
-        JPanel displaySpace = new JPanel();
-        displaySpace.setLayout(new GridLayout(width, 100));
-        calculator.add(displaySpace);
+        //Panel principal de la calculadora.
+        JPanel panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
 
-        //Panel principal:
-        JPanel mainPanel = new JPanel(new BoxLayout( 1, BoxLayout.Y_AXIS)); //Ajustar
-        //Panel botones:
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 4, 5, 5));
+        //Panel del display de la calculadora
+        JPanel panelDisplay = new JPanel();
+        panelDisplay.setLayout(new GridLayout(1, 1, 5, 5));
+        JLabel display = new JLabel("0", SwingConstants.RIGHT);
+        display.setBackground(Color.CYAN);
+        display.setOpaque(true);
+        display.setBorder(new EmptyBorder(10, 10, 10, 10));
+        panelDisplay.add(display);
+        panelPrincipal.add(panelDisplay);
 
-
-        String[] buttonNames = { //COnvertir a matriz
-                "7", "8", "9", "/",
-                "4", "5", "6", "*",
-                "1", "2", "3", "-",
-                "0", "=", "%", "+"
+        //Panel de los botones de la calculadora
+        JPanel panelBotones = new JPanel();
+        GridLayout gridLayout = new GridLayout(textoBotones.length, textoBotones[0].length, 10, 10);
+        panelBotones.setLayout(gridLayout);
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println("Se ha pulsado el boton");
+            }
         };
-        for (String name : buttonNames) {
-            JButton button = new JButton(name);
-            ActionListener actionListener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.print(name);
-                    handleButtonPress(button);
+
+        int counter = 0;
+        for(int i = 0; i < textoBotones.length; i++) {
+            for(int j = 0; j < textoBotones[i].length; j++) {
+                Boton boton = textoBotones[i][j];
+                buttons[counter] = new JButton(boton.getTexto());
+                switch(boton.getAccion()) {
+                    case DIGITO:
+                        buttons[counter].addActionListener(calculatorController.getActionDigito());
+                        break;
                 }
-            };
-            button.addActionListener(actionListener);
-            buttonPanel.add(button);
+                panelBotones.add(buttons[counter]);
+                counter++;
+            }
         }
+        panelPrincipal.add(panelBotones);
 
-        mainPanel.add(displaySpace);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
-
-        calculator.setContentPane(mainPanel);
-        calculator.setBounds(x, y, width, height);
-        calculator.setResizable(true);
-        calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        calculator.setVisible(true);
-    }
-
-    //Maneja el boton = pero peta al hacer una operacion...
-    private void handleButtonPress(JButton button) {
-        String buttonText = button.getText();
-        if(buttonText.equals("=")) {
-            double result = evaluateExpresion(sb.toString());
-            sb.setLength(0);
-            button.setText(Double.toString(result));
-        } else {
-            sb.append(buttonText);
-            button.setText(sb.toString());
-        }
-    }
-
-    //Coger la operacion a calcular
-    private double evaluateExpresion(String expresion) {
-        String[] parts = expresion.split(" ");
-        double num1 = Double.parseDouble(parts[0]);
-        String operator = parts[1];
-        double num2 = Double.parseDouble(parts[2]);
-
-        switch (operator) {
-            case "+":
-                return num1 + num2;
-            case "-":
-                return num1 - num2;
-            case "*":
-                return num1 * num2;
-            case "/":
-                return (num2 == 0) ? Double.POSITIVE_INFINITY : num1 / num2;
-            case "%":
-                return num1 % num2;
-            default:
-                return Double.POSITIVE_INFINITY;
-        }
+        ventana.setContentPane(panelPrincipal);
+        ventana.setBounds((int)x, (int)y, width, height);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setResizable(false);
+        ventana.setVisible(true);
     }
 }
