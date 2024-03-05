@@ -11,14 +11,12 @@ public class InterfaceCalculator {
     //Calculator calculator;
     public InterfaceCalculator(int width, int height) {
         Boton[][] textoBotones = {
-                {new Boton("ON", Boton.Accion.ON),  new Boton("OFF", Boton.Accion.OFF), new Boton("%", Boton.Accion.OPERADOR), new Boton("/", Boton.Accion.OPERADOR)},
+                {new Boton("ON", Boton.Accion.ON),  new Boton("OFF", Boton.Accion.OFF), new Boton("MOD", Boton.Accion.OPERADOR), new Boton("/", Boton.Accion.OPERADOR)},
                 {new Boton("7", Boton.Accion.DIGITO), new Boton("8", Boton.Accion.DIGITO), new Boton("9", Boton.Accion.DIGITO), new Boton("*", Boton.Accion.OPERADOR)},
                 {new Boton("4", Boton.Accion.DIGITO), new Boton("5", Boton.Accion.DIGITO), new Boton("6", Boton.Accion.DIGITO), new Boton("-", Boton.Accion.OPERADOR)},
                 {new Boton("1", Boton.Accion.DIGITO), new Boton("2", Boton.Accion.DIGITO), new Boton("3", Boton.Accion.DIGITO), new Boton("+", Boton.Accion.OPERADOR)},
                 {new Boton("0", Boton.Accion.DIGITO), new Boton(".", Boton.Accion.PUNTO), new Boton("AC", Boton.Accion.AC), new Boton("=", Boton.Accion.IGUAL)},
         };
-
-        CalculatorController calculatorController = new CalculatorController();
 
         JButton[] buttons = new JButton[textoBotones.length * textoBotones[0].length];
         JFrame ventana = new JFrame("Calculator");
@@ -33,13 +31,15 @@ public class InterfaceCalculator {
 
         //Panel del display de la calculadora
         JPanel panelDisplay = new JPanel();
-        panelDisplay.setLayout(new GridLayout(1, 1, 5, 5));
+        panelDisplay.setLayout(new GridLayout(1, 1, 10, 10));
         JLabel display = new JLabel("0", SwingConstants.RIGHT);
-        display.setBackground(Color.CYAN);
+        display.setFont(new Font("Courier", Font.PLAIN, 25));
+        display.setBackground(Color.decode("#00F045"));
         display.setOpaque(true);
         display.setBorder(new EmptyBorder(10, 10, 10, 10));
         panelDisplay.add(display);
         panelPrincipal.add(panelDisplay);
+        CalculatorController calculatorController = new CalculatorController(display);
 
         //Panel de los botones de la calculadora
         JPanel panelBotones = new JPanel();
@@ -60,6 +60,12 @@ public class InterfaceCalculator {
                 switch(boton.getAccion()) {
                     case DIGITO:
                         buttons[counter].addActionListener(calculatorController.getActionDigito());
+                        break;
+                    case OPERADOR:
+                        buttons[counter].addActionListener(calculatorController.getActionOperador());
+                        break;
+                    case IGUAL:
+                        buttons[counter].addActionListener(calculatorController.getActionIgual());
                         break;
                 }
                 panelBotones.add(buttons[counter]);
