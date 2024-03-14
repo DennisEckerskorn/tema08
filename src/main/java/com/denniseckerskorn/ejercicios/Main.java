@@ -1,7 +1,6 @@
 package com.denniseckerskorn.ejercicios;
 
-import com.denniseckerskorn.ejercicios.interfacecalculator.InterfaceCalculator;
-import com.denniseckerskorn.ejercicios.tema08.*;
+import com.denniseckerskorn.ejercicios.tema08.ejer05.Ejercicio05;
 
 public class Main {
     public static void main(String[] args) {
