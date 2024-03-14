@@ -5,12 +5,12 @@ import javax.tools.Tool;
 import java.awt.*;
 
 public class Ejercicio01 {
-   public Ejercicio01(){
-       JFrame ventana = new JFrame("Hola Swing");
-       ventana.setSize(800,600);
-       ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ventana.setVisible(true);
+    public Ejercicio01() {
+        JFrame ventana = new JFrame("Hola Swing");
+        ventana.setSize(800, 600);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setVisible(true);
 
-   }
+    }
 
 }
