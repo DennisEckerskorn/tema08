@@ -6,11 +6,15 @@ import java.util.Scanner;
 public class AdivinarNumero {
     private Random rnd = new Random();
     private int intentosRestantes;
+    private int min;
+    private int max;
     private int numeroAleatorio;
 
-    public AdivinarNumero(int intentosRestantes) {
+    public AdivinarNumero(int intentosRestantes, int min, int max) {
         this.intentosRestantes = intentosRestantes;
-        this.numeroAleatorio = generarNumAleatorio(1, 100);
+        this.min = min;
+        this.max = max;
+        this.numeroAleatorio = generarNumAleatorio(min, max);
 
     }
 

@@ -11,7 +11,7 @@ public class Ejercicio05 {
     private JLabel labelNumIntentos;
 
     public Ejercicio05() {
-        juego = new AdivinarNumero(5);
+        juego = new AdivinarNumero(5,1,100);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
