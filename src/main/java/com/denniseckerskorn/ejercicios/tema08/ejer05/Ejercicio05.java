@@ -33,7 +33,7 @@ public class Ejercicio05 {
 
 
         JLabel title = new JLabel("++++++ ADIVINAR EL NUMERO ++++++");
-        title.setBounds(320, 20, 400, 50);
+        title.setBounds(320, 200, 400, 50);
         title.setFont(new Font("Courier", Font.BOLD, 20));
         container.add(title);
 
@@ -41,7 +41,7 @@ public class Ejercicio05 {
         //JLabel para el número de intentos:
         labelNumIntentos = new JLabel();
         actualizarLabelNumIntentos();
-        labelNumIntentos.setBounds(360, 410, 300, 50);
+        labelNumIntentos.setBounds(384, 410, 300, 50);
         //Estilo de texto del JLabel
         labelNumIntentos.setFont(new Font("Courier", Font.BOLD, 15));
         //Se añade el JLabel al container de la ventana.
