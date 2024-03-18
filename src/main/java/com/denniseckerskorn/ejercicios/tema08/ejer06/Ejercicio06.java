@@ -1,6 +1,7 @@
 package com.denniseckerskorn.ejercicios.tema08.ejer06;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class Ejercicio06 {
@@ -16,26 +17,29 @@ public class Ejercicio06 {
         int y = (int) (dimension.getHeight() / 2f) - Math.round(height / 2f);
 
         //Se crea la ventana principal:
-        JFrame frame = new JFrame("IMC");
-        frame.setSize(x,y);
-        frame.setBounds(x,y,width,height);
+        JFrame frame = new JFrame("Calculadora IMC");
+        frame.setSize(x, y);
+        frame.setBounds(x, y, width, height);
 
         //Contenedor dentro del frame:
         JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        panel.setLayout(new GridLayout(3, 2, 5, 5)); //3 filas, 2 columnas, espaciado
 
-        //JLabel para indicar el peso:
-        JLabel title = new JLabel("Calculadora IMC");
-        panel.add(title);
+        //Matriz para posicionar los elementos:
+        String[][] elements = {
+                {"Ingresa tu peso en KG:", ""},
+                {"Ingresa tu altura en CM:", ""}
+        };
 
-        JOptionPane.showInputDialog("Ingresa tu peso en KG:");
+        for (int i = 0; i < elements.length; i++) {
+            JLabel label = new JLabel(elements[i][0]);
+            JTextField textField = new JTextField();
+            panel.add(label);
+            panel.add(textField);
+        }
 
 
-
-
-
-
-        frame.setContentPane(panel);
+        frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
