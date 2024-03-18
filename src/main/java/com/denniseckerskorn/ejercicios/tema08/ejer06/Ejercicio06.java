@@ -28,14 +28,18 @@ public class Ejercicio06 {
         //Matriz para posicionar los elementos:
         String[][] elements = {
                 {"Ingresa tu peso en KG:", ""},
-                {"Ingresa tu altura en CM:", ""}
+                {"Ingresa tu altura en CM:", ""},
+                {"Boton Calcular IMC"}
         };
 
         for (int i = 0; i < elements.length; i++) {
+
             JLabel label = new JLabel(elements[i][0]);
             JTextField textField = new JTextField();
             panel.add(label);
             panel.add(textField);
+
+
         }
 
 
