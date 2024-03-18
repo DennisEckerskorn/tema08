@@ -9,6 +9,14 @@ public enum Clasificacion {
     OBESIDAD_LEVE("Obesidad Leve"),
     OBESIDAD_MEDIA("Obesidad Media"),
     OBESIDAD_MORBIDA("Obesidad Morbida");
-}
 
-public Clasificacion()
+    private String message;
+
+    Clasificacion(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
