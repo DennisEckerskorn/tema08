@@ -86,7 +86,9 @@ public class GUIJuego {
         scoreLabelCPU = new JLabel("Score CPU: " + juego.getScoreCPU());
         player2Panel.add(scoreLabelCPU);
 
-        scoreEven = new JLabel("It's a Tie Score: " + juego.getScoreEven());
+        JPanel scorePanel = new JPanel();
+        scoreEven = new JLabel("Score It's a Tie: " + juego.getScoreEven());
+        scorePanel.add(scoreEven); //Falta posicionar correctamente e implemtar que pasa si hay una partida de solo scoreEven
 
         JPanel playPanel = new JPanel();
         JButton buttonPlay = new JButton("Jugar");
@@ -99,9 +101,9 @@ public class GUIJuego {
         playPanel.add(buttonPlay);
 
         //Se especifica en que lado está cada panel de Jugador:
-        centerPanel.add(scoreEven, BorderLayout.CENTER);
         centerPanel.add(player1Panel, BorderLayout.WEST);
         centerPanel.add(player2Panel, BorderLayout.EAST);
+        centerPanel.add(scorePanel, BorderLayout.CENTER);
         centerPanel.add(playPanel, BorderLayout.SOUTH);
 
         /*
@@ -116,8 +118,6 @@ public class GUIJuego {
         frame.add(centerPanel, BorderLayout.CENTER);
 
         frame.setVisible(true);
-
-
     }
 
     private void startGame() {
@@ -127,31 +127,28 @@ public class GUIJuego {
     }
 
     private void playRound(JuegoPPT.PPT playerChoice) {
-        if (roundsPlayed < juego.getRounds()) {
-            juego.playRound(playerChoice);
-            roundsPlayed++;
-            updateScores();
-            if (roundsPlayed == juego.getRounds()) {
-                determineWinner();
-            }
-        } else {
+        juego.playRound(playerChoice);
+        roundsPlayed++;
+        updateScores();
+        if (roundsPlayed == juego.getRounds()) {
+            determineWinner();
             JOptionPane.showMessageDialog(null, "El juego ha terminado. Haz click en Jugar para comenzar un nuevo juego. ");
         }
     }
 
-    private void updateScores(){
+    private void updateScores() {
         scoreLabelPlayer.setText("Score Player 1: " + juego.getScorePlayer());
         scoreLabelCPU.setText("Score CPU: " + juego.getScoreCPU());
         scoreEven.setText("Score It's a Tie: " + juego.getScoreEven());
     }
 
-    private void determineWinner(){
+    private void determineWinner() {
         int playerScore = juego.getScorePlayer();
         int cpuScore = juego.getScoreCPU();
 
-        if(playerScore > cpuScore) {
+        if (playerScore > cpuScore) {
             JOptionPane.showMessageDialog(null, "Felicidades! Has ganado el juego");
-        } else if(playerScore < cpuScore) {
+        } else if (playerScore < cpuScore) {
             JOptionPane.showMessageDialog(null, "La CPU ha ganado el juego!");
         } else {
             JOptionPane.showMessageDialog(null, "El juego ha terminado en empate!");
