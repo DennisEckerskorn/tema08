@@ -1,16 +1,11 @@
 package com.denniseckerskorn.ejercicios.tema08.ejer06;
 
-import com.denniseckerskorn.ejercicios.lib.LibIO;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Ejercicio06 {
-    private Clasificacion clasificacion;
-
     public Ejercicio06() {
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
