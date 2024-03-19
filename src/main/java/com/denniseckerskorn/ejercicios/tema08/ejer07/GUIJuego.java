@@ -27,12 +27,35 @@ public class GUIJuego {
         *                   Label   Label
         * */
 
-        JPanel panel = new JPanel(new GridLayout(6,4,5,5));
+        JPanel borderPanel = new JPanel(new BorderLayout());
 
+        Checkbox checkboxPiedra = new Checkbox("Piedra");
+        borderPanel.add(checkboxPiedra, BorderLayout.WEST);
 
+        Checkbox checkboxPapel = new Checkbox("Papel");
+        borderPanel.add(checkboxPapel, BorderLayout.CENTER);
 
+        Checkbox checkboxTijera = new Checkbox("Tijeras");
+        borderPanel.add(checkboxTijera, BorderLayout.WEST);
 
-        frame.add(panel);
+        JPanel buttonPanel = new JPanel();
+        JButton button = new JButton("Jugar");
+        buttonPanel.add(button);
+
+        //JLabel emptyLabel = new JLabel();
+        //panel.add(emptyLabel);
+
+        JLabel scoreLabel = new JLabel("Puntuacion");
+        JLabel playerScore = new JLabel("Puntuacion Jugador");
+        JLabel cpuScore = new JLabel("Puntuación CPU");
+
+        //panel.add(scoreLabel);
+        //panel.add(playerScore);
+        //panel.add(cpuScore);
+
+        frame.add(borderPanel);
+        //borderPanel.add(panelCheckBox, BorderLayout.CENTER);
+        borderPanel.add(buttonPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
     }
 }
