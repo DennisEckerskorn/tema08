@@ -38,9 +38,9 @@ public class GUIJuego {
 
         //Panel de Jugador 1:
         JPanel player1Panel = new JPanel(new GridLayout(4, 1, 5, 5));
-        player1Panel.add(new JLabel("Jugador 1"));
-        JPanel buttonPanel1 = new JPanel(new GridLayout(3, 1, 5, 5));
+        player1Panel.add(new JLabel("Jugador"));
 
+        JPanel buttonPanel1 = new JPanel(new GridLayout(3, 1, 5, 5));
         JButton piedraButton = new JButton("Piedra");
         piedraButton.addActionListener(new ActionListener() {
             @Override
@@ -67,29 +67,24 @@ public class GUIJuego {
             }
         });
         buttonPanel1.add(tijeraButton);
-
         player1Panel.add(buttonPanel1);
 
-        scoreLabelPlayer = new JLabel("Score Player 1: " + juego.getScorePlayer());
-        player1Panel.add(scoreLabelPlayer);
-
-        //Panel de Jugador 2:
+        //Panel de CPU:
         JPanel player2Panel = new JPanel(new GridLayout(4, 1, 5, 5));
         player2Panel.add(new JLabel("CPU"));
-        /*
-        JPanel buttonPanel2 = new JPanel(new GridLayout(3,1,5,5));
-        buttonPanel2.add(new JButton("Piedra"));
-        buttonPanel2.add(new JButton("Papel"));
-        buttonPanel2.add(new JButton("Tijeras"));
-        player2Panel.add(buttonPanel2);
-         */
-        scoreLabelCPU = new JLabel("Score CPU: " + juego.getScoreCPU());
-        player2Panel.add(scoreLabelCPU);
 
-        JPanel scorePanel = new JPanel();
+        //Panel de puntuación:
+        JPanel scorePanel = new JPanel(new FlowLayout());
+        scoreLabelPlayer = new JLabel("Score Player: " + juego.getScorePlayer());
+        scorePanel.add(scoreLabelPlayer);
+
+        scoreLabelCPU = new JLabel("Score CPU: " + juego.getScoreCPU());
+        scorePanel.add(scoreLabelCPU);
+
         scoreEven = new JLabel("Score It's a Tie: " + juego.getScoreEven());
         scorePanel.add(scoreEven); //Falta posicionar correctamente e implemtar que pasa si hay una partida de solo scoreEven
 
+        //Panel para el boton de Jugar:
         JPanel playPanel = new JPanel();
         JButton buttonPlay = new JButton("Jugar");
         buttonPlay.addActionListener(new ActionListener() {
@@ -106,14 +101,7 @@ public class GUIJuego {
         centerPanel.add(scorePanel, BorderLayout.CENTER);
         centerPanel.add(playPanel, BorderLayout.SOUTH);
 
-        /*
-        //Boton para Jugar:
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton button = new JButton("Jugar");
-        buttonPanel.add(button);
-        */
-        //Se añaden los paneles a la ventana:
-        //frame.add(buttonPanel, BorderLayout.SOUTH);
+
         frame.add(titlePanel, BorderLayout.NORTH);
         frame.add(centerPanel, BorderLayout.CENTER);
 
@@ -137,7 +125,7 @@ public class GUIJuego {
     }
 
     private void updateScores() {
-        scoreLabelPlayer.setText("Score Player 1: " + juego.getScorePlayer());
+        scoreLabelPlayer.setText("Score Player: " + juego.getScorePlayer());
         scoreLabelCPU.setText("Score CPU: " + juego.getScoreCPU());
         scoreEven.setText("Score It's a Tie: " + juego.getScoreEven());
     }
@@ -145,6 +133,8 @@ public class GUIJuego {
     private void determineWinner() {
         int playerScore = juego.getScorePlayer();
         int cpuScore = juego.getScoreCPU();
+        //int evenScore = juego.getScoreEven();
+        //int totalRounds = juego.getRounds();
 
         if (playerScore > cpuScore) {
             JOptionPane.showMessageDialog(null, "Felicidades! Has ganado el juego");
