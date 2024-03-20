@@ -3,6 +3,7 @@ package com.denniseckerskorn.ejercicios;
 import com.denniseckerskorn.ejercicios.tema08.ejer05.Ejercicio05;
 import com.denniseckerskorn.ejercicios.tema08.ejer06.Ejercicio06;
 import com.denniseckerskorn.ejercicios.tema08.ejer07.GUIJuego;
+import com.denniseckerskorn.ejercicios.tema08.ejer08.EncriptacionCesar;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,5 +15,8 @@ public class Main {
         //Ejercicio05 ejercicio05 = new Ejercicio05();
         //Ejercicio06 ejercicio06 = new Ejercicio06();
         //GUIJuego guiJuego = new GUIJuego();
+        EncriptacionCesar encriptacionCesar = new EncriptacionCesar("CAFE", 3);
+        String mensajeEncriptado = encriptacionCesar.encriptar();
+        System.out.println(mensajeEncriptado);
     }
 }
