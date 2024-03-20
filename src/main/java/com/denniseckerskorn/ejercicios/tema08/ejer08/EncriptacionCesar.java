@@ -1,6 +1,8 @@
 package com.denniseckerskorn.ejercicios.tema08.ejer08;
 
 import javax.print.attribute.standard.Finishings;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class EncriptacionCesar {
@@ -8,9 +10,9 @@ public class EncriptacionCesar {
     private final String mensaje;
     private final int claveCifrado;
 
-    public EncriptacionCesar(String mensaje, int claveCifrado) {
+    public EncriptacionCesar(int claveCifrado) {
         this.semilla = 123456; //Semilla, al ser igual se genera la misma secuencia de numeros aleatorios.
-        this.mensaje = mensaje; //Mensaje a encriptar.
+        mensaje = ""; //Mensaje a encriptar.
         this.claveCifrado = claveCifrado; //Valor de desplazamiento del cifrado.
     }
 
@@ -30,7 +32,7 @@ public class EncriptacionCesar {
      *
      * @return Mensaje cifrado con las carácterísticas mencionadas anteriormente.
      */
-    public String encriptar() {
+    public String encriptar(String mensaje) {
         StringBuilder sb = new StringBuilder();
         Random rnd = new Random(semilla);
 
@@ -87,5 +89,46 @@ public class EncriptacionCesar {
             sb.append(c);
         }
         return sb.toString();
+    }
+
+    public int getSemilla() {
+        return semilla;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public int getClaveCifrado() {
+        return claveCifrado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EncriptacionCesar that = (EncriptacionCesar) o;
+
+        if (semilla != that.semilla) return false;
+        if (claveCifrado != that.claveCifrado) return false;
+        return Objects.equals(mensaje, that.mensaje);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = semilla;
+        result = 31 * result + (mensaje != null ? mensaje.hashCode() : 0);
+        result = 31 * result + claveCifrado;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EncriptacionCesar{" +
+                "semilla=" + semilla +
+                ", mensaje='" + mensaje + '\'' +
+                ", claveCifrado=" + claveCifrado +
+                '}';
     }
 }
