@@ -17,6 +17,8 @@ public class Main {
         //GUIJuego guiJuego = new GUIJuego();
         EncriptacionCesar encriptacionCesar = new EncriptacionCesar("CAFE", 3);
         String mensajeEncriptado = encriptacionCesar.encriptar();
+        String mensajeDesencriptado = encriptacionCesar.desencriptar(mensajeEncriptado);
         System.out.println(mensajeEncriptado);
+        System.out.println(mensajeDesencriptado);
     }
 }

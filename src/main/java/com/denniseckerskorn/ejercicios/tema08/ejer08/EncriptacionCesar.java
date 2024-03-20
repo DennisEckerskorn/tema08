@@ -1,5 +1,6 @@
 package com.denniseckerskorn.ejercicios.tema08.ejer08;
 
+import javax.print.attribute.standard.Finishings;
 import java.util.Random;
 
 public class EncriptacionCesar {
@@ -26,6 +27,7 @@ public class EncriptacionCesar {
      * Se aplica el cifrado Cesar al carácter utilizando la fórmula:
      * ((caracter - inicio + claveConSemilla) % 26 + inicio).
      * Finalmente, el carácter cifrado se añade al StringBuilder.
+     *
      * @return Mensaje cifrado con las carácterísticas mencionadas anteriormente.
      */
     public String encriptar() {
@@ -49,15 +51,41 @@ public class EncriptacionCesar {
         return sb.toString();
     }
 
+    /**
+     * Método que desencripta un mensaje encriptado usando la encriptación César.
+     * Se crea un StringBuilder para almacenar el mensaje desencriptado.
+     * Se crea un objeto Random con la semilla del constructor.
+     * Se recorre el mensaje encriptado y se almacena en cada iteración el carácter correspondiente.
+     * Si el carácter es una letra, se comprueba si es minúscula o mayúscula.
+     * En el caso de que sea minúscula, se establece el valor de 'inicio' en 'a',
+     * y en el caso de que sea mayúscula, se establece en 'A'.
+     * Se genera un valor aleatorio entre 0 y la longitud del mensaje utilizando la semilla.
+     * Este valor aleatorio se suma a la clave de cifrado para introducir variabilidad en el descifrado.
+     * Se aplica el descifrado César al carácter utilizando la fórmula:
+     * ((caracter - inicio - claveSemilla + 26) % 26 + inicio).
+     * Finalmente, el carácter descifrado se añade al StringBuilder.
+     *
+     * @param mensajeEncriptado El mensaje encriptado que se desea desencriptar.
+     * @return El mensaje desencriptado.
+     */
     public String desencriptar(String mensajeEncriptado) {
         StringBuilder sb = new StringBuilder();
         Random rnd = new Random(semilla);
 
-        for(int i = 0; i < mensajeEncriptado.length(); i++) {
-
+        for (int i = 0; i < mensajeEncriptado.length(); i++) {
+            char c = mensajeEncriptado.charAt(i);
+            if (Character.isLetter(c)) {
+                char inicio;
+                if (Character.isLowerCase(c)) {
+                    inicio = 'a';
+                } else {
+                    inicio = 'A';
+                }
+                int claveSemilla = claveCifrado + rnd.nextInt(mensajeEncriptado.length());
+                c = (char) ((c - inicio - claveSemilla + 26) % 26 + inicio);
+            }
+            sb.append(c);
         }
-
-
         return sb.toString();
     }
 }
