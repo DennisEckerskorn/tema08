@@ -13,6 +13,6 @@ public class Main {
         //Ejercicio04 ejercicio04 = new Ejercicio04();
         //Ejercicio05 ejercicio05 = new Ejercicio05();
         //Ejercicio06 ejercicio06 = new Ejercicio06();
-        GUIJuego guiJuego = new GUIJuego();
+        //GUIJuego guiJuego = new GUIJuego();
     }
 }
