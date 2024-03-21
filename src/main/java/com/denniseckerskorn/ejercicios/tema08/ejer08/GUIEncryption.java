@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public class GUIEncryption {
     private EncriptacionCesar encriptacionCesar;
+    private int passwordSemilla;
     public GUIEncryption() {
-        encriptacionCesar = new EncriptacionCesar(3);
         int widht = 800;
         int height = 600;
 
@@ -38,24 +38,43 @@ public class GUIEncryption {
         textDecrypt.setBounds(400, 200, 300,20);
 
         JButton buttonEncrypt = new JButton("Encriptar");
-        buttonEncrypt.setBounds(340,90,100,20);
+        buttonEncrypt.setBounds(340,90,120,20);
+
+        textEncrypt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buttonEncrypt.doClick();
+            }
+        });
 
         buttonEncrypt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                passwordSemilla = Integer.parseInt(JOptionPane.showInputDialog(frame, "Contrasena:"));
+                encriptacionCesar = new EncriptacionCesar(3, passwordSemilla);
                 String mensajeEncriptado = encriptacionCesar.encriptar(textEncrypt.getText());
-                JOptionPane.showMessageDialog(null,mensajeEncriptado);
+                JOptionPane.showMessageDialog(frame,mensajeEncriptado);
             }
         });
 
         JButton buttonDecrypt = new JButton("Desencriptar");
-        buttonDecrypt.setBounds(340,230,100,20);
+        buttonDecrypt.setBounds(340,230,120,20);
+
+        textDecrypt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buttonDecrypt.doClick();
+            }
+        });
 
         buttonDecrypt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                passwordSemilla = Integer.parseInt(JOptionPane.showInputDialog(frame, "Contrasena:"));
+                encriptacionCesar = new EncriptacionCesar(3, passwordSemilla);
                 String mensajeDesencriptado = encriptacionCesar.desencriptar(textDecrypt.getText());
-                JOptionPane.showMessageDialog(null,mensajeDesencriptado);
+                JOptionPane.showMessageDialog(frame,mensajeDesencriptado);
+                buttonDecrypt.doClick();
             }
         });
 

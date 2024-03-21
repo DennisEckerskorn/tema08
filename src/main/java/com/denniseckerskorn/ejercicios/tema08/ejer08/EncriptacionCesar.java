@@ -9,9 +9,10 @@ public class EncriptacionCesar {
     private final int semilla;
     private final String mensaje;
     private final int claveCifrado;
+    //private final String alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyzáéíóúàèìòùÁÉÍÓÚÀÈÌÒÙ";
 
-    public EncriptacionCesar(int claveCifrado) {
-        this.semilla = 123456; //Semilla, al ser igual se genera la misma secuencia de numeros aleatorios.
+    public EncriptacionCesar(int claveCifrado, int semilla) {
+        this.semilla = semilla; //Semilla, al ser igual se genera la misma secuencia de numeros aleatorios.
         mensaje = ""; //Mensaje a encriptar.
         this.claveCifrado = claveCifrado; //Valor de desplazamiento del cifrado.
     }
@@ -40,13 +41,16 @@ public class EncriptacionCesar {
             char c = mensaje.charAt(i);
             if (Character.isLetter(c)) {
                 char inicio;
+                char fin;
                 if (Character.isLowerCase(c)) {
                     inicio = 'a';
+                    fin = 'z';
                 } else {
                     inicio = 'A';
+                    fin = 'Z';
                 }
-                int claveConSemilla = claveCifrado + rnd.nextInt(mensaje.length());
-                c = (char) ((c - inicio + claveConSemilla) % 26 + inicio);
+                int claveConSemilla = claveCifrado + rnd.nextInt(1,28);
+                c = (char) ((c - inicio + claveConSemilla) % 27 + inicio);
             }
             sb.append(c);
         }
@@ -83,8 +87,8 @@ public class EncriptacionCesar {
                 } else {
                     inicio = 'A';
                 }
-                int claveSemilla = claveCifrado + rnd.nextInt(mensajeEncriptado.length());
-                c = (char) ((c - inicio - claveSemilla + 26) % 26 + inicio);
+                int claveSemilla = claveCifrado + rnd.nextInt(1,28);
+                c = (char) ((c - inicio - claveSemilla + 27) % 27 + inicio);
             }
             sb.append(c);
         }
@@ -112,13 +116,13 @@ public class EncriptacionCesar {
 
         if (semilla != that.semilla) return false;
         if (claveCifrado != that.claveCifrado) return false;
-        return Objects.equals(mensaje, that.mensaje);
+        return mensaje.equals(that.mensaje);
     }
 
     @Override
     public int hashCode() {
         int result = semilla;
-        result = 31 * result + (mensaje != null ? mensaje.hashCode() : 0);
+        result = 31 * result + mensaje.hashCode();
         result = 31 * result + claveCifrado;
         return result;
     }
