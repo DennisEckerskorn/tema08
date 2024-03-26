@@ -1,10 +1,13 @@
 package com.denniseckerskorn.ejercicios;
 
+import com.denniseckerskorn.ejercicios.graphics.Game;
 import com.denniseckerskorn.ejercicios.tema08.ejer05.Ejercicio05;
 import com.denniseckerskorn.ejercicios.tema08.ejer06.Ejercicio06;
 import com.denniseckerskorn.ejercicios.tema08.ejer07.GUIJuego;
 import com.denniseckerskorn.ejercicios.tema08.ejer08.EncriptacionCesar;
 import com.denniseckerskorn.ejercicios.tema08.ejer08.GUIEncryption;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +27,16 @@ public class Main {
         System.out.println(mensajeDesencriptado);
          */
 
-        GUIEncryption guiEncryption = new GUIEncryption();
+        //GUIEncryption guiEncryption = new GUIEncryption();
+
+        JFrame frame = new JFrame();
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setTitle("Game Of Life");
+
+        Game game = new Game(1280, 960, 60);
+        frame.add(game);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
