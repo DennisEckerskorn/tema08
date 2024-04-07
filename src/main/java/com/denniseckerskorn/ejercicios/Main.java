@@ -1,5 +1,6 @@
 package com.denniseckerskorn.ejercicios;
 
+import com.denniseckerskorn.ejercicios.gameoflife.LifeFrame;
 import com.denniseckerskorn.ejercicios.graphics.Game;
 import com.denniseckerskorn.ejercicios.tema08.ejer05.Ejercicio05;
 import com.denniseckerskorn.ejercicios.tema08.ejer06.Ejercicio06;
@@ -26,7 +27,7 @@ public class Main {
         System.out.println(mensajeEncriptado);
         System.out.println(mensajeDesencriptado);
          */
-
+/*
         //GUIEncryption guiEncryption = new GUIEncryption();
 
         JFrame frame = new JFrame();
@@ -38,5 +39,9 @@ public class Main {
         frame.add(game);
         frame.pack();
         frame.setVisible(true);
+
+ */
+
+        LifeFrame lifeFrame = new LifeFrame();
     }
 }
