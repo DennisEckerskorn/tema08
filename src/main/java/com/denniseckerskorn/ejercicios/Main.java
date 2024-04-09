@@ -27,8 +27,6 @@ public class Main {
         System.out.println(mensajeEncriptado);
         System.out.println(mensajeDesencriptado);
          */
-/*
-        //GUIEncryption guiEncryption = new GUIEncryption();
 
         JFrame frame = new JFrame();
         frame.setResizable(false);
@@ -39,9 +37,6 @@ public class Main {
         frame.add(game);
         frame.pack();
         frame.setVisible(true);
-
- */
-
-        LifeFrame lifeFrame = new LifeFrame();
+        game.start();
     }
 }
