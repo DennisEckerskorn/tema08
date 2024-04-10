@@ -54,9 +54,9 @@ public class Ball {
         }
         this.x += speedX;
         if (y + speedY >= worldHeight || y + speedY <= 0) {
-            speedX *= -1;
-            this.y += speedY;
+            speedY *= -1;
         }
+        this.y += speedY;
 
 
     }
