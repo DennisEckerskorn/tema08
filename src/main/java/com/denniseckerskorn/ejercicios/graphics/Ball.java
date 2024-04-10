@@ -49,11 +49,13 @@ public class Ball {
     }
 
     public void update() {
-        if (x + speedX >= worldWidth || x + speedX <= 0) {
+        if (x + speedX >= worldWidth - size || x + speedX <= 0) {
+            speedX += speedX * 0.05; //Incrementa Velocidad
             speedX *= -1;
         }
         this.x += speedX;
-        if (y + speedY >= worldHeight || y + speedY <= 0) {
+        if (y + speedY >= worldHeight - size || y + speedY <= 0) {
+            speedY += speedY * 0.05; //Incrementa Velocidad
             speedY *= -1;
         }
         this.y += speedY;

@@ -2,6 +2,7 @@ package com.denniseckerskorn.ejercicios;
 
 import com.denniseckerskorn.ejercicios.gameoflife.LifeFrame;
 import com.denniseckerskorn.ejercicios.graphics.Game;
+import com.denniseckerskorn.ejercicios.graphics.Game2;
 import com.denniseckerskorn.ejercicios.tema08.ejer05.Ejercicio05;
 import com.denniseckerskorn.ejercicios.tema08.ejer06.Ejercicio06;
 import com.denniseckerskorn.ejercicios.tema08.ejer07.GUIJuego;
@@ -33,10 +34,10 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("Game Of Life");
 
-        Game game = new Game(1280, 960, 60);
-        frame.add(game);
+        Game2 game2 = new Game2(1280, 960, 60);
+        frame.add(game2);
         frame.pack();
         frame.setVisible(true);
-        game.start();
+        game2.start();
     }
 }
