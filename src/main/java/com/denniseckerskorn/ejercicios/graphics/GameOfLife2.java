@@ -1,6 +1,7 @@
 package com.denniseckerskorn.ejercicios.graphics;
 
 import java.awt.*;
+import java.util.Random;
 
 public class GameOfLife2 {
     private final int width;
@@ -16,12 +17,14 @@ public class GameOfLife2 {
         world = new int[height][width];
         nextWorld = new int[height][width];
         initializeMatrix(world);
+        initializeMatrix(nextWorld);
     }
 
     private void initializeMatrix(int[][] currentWorld) {
+        Random rnd = new Random();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-
+                currentWorld[i][j] = rnd.nextInt(2);
             }
         }
     }
@@ -52,5 +55,16 @@ public class GameOfLife2 {
             g2.drawLine(i, 0, i, height);
         }
 
+        //Draws cells in grid if cell is alive
+        g2.setColor(Color.GREEN);
+        for(int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if(world[y][x] == 1) {
+                    int cellX = x * cellSize;
+                    int cellY = y * cellSize;
+                    g2.fillRect(cellX,cellY,cellSize,cellSize);
+                }
+            }
+        }
     }
 }
