@@ -29,6 +29,8 @@ public class GameOfLife2 {
         }
     }
 
+
+
     public int getWidth() {
         return width;
     }
@@ -42,7 +44,9 @@ public class GameOfLife2 {
     }
 
     public void update() {
-        //Simular una generación:
+        //Simular una generación: Pasos a seguir: Copiar mundo, establecer reglas, actualizarMundo
+        copyWorld();
+
     }
 
     public void draw(Graphics2D g2) {
@@ -66,5 +70,17 @@ public class GameOfLife2 {
                 }
             }
         }
+    }
+
+    private void copyWorld() {
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
+                nextWorld[i][j] = world[i][j];
+            }
+        }
+    }
+
+    private void ruleSet() {
+
     }
 }
