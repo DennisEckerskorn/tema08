@@ -22,7 +22,6 @@ public class Game2 extends JPanel implements Runnable {
         setPreferredSize(new Dimension(width, height));
         setBackground(Color.WHITE);
         setFocusable(true);
-
         gameOfLife2 = new GameOfLife2(width, height, 10);
 
     }
@@ -65,6 +64,7 @@ public class Game2 extends JPanel implements Runnable {
     private void update() {
         // TODO: update
       gameOfLife2.update();
+      repaint();
     }
 
     private void processInput() {

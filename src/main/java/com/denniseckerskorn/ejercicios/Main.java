@@ -36,8 +36,8 @@ public class Main {
 
         Game2 game2 = new Game2(1280, 960, 60);
         frame.add(game2);
+        game2.start();
         frame.pack();
         frame.setVisible(true);
-        game2.start();
     }
 }
